@@ -2,6 +2,7 @@ package com.facu.restfake.controllers;
 
 import com.facu.restfake.entities.Product;
 import com.facu.restfake.services.ProductServiceImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "fakestoreapi.com/products")
 public class ProductController extends BaseControllerImpl<Product, ProductServiceImpl>{
 
-    @GetMapping("/buscarPorTituloQueryMethod")
-    public ResponseEntity<?> buscarPorTituloQueryMethod(@RequestParam String title){
+    @GetMapping("/buscarPorTituloQueryMethodPaged")
+    public ResponseEntity<?> buscarPorTituloQueryMethodPaged(@RequestParam String title, Pageable pageable){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(servicio.buscarPorTituloQueryMethod(title));
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.buscarPorTituloQueryMethodPaged(title, pageable));
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));

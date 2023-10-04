@@ -5,6 +5,8 @@ import com.facu.restfake.entities.Product;
 import com.facu.restfake.repositories.BaseRepository;
 import com.facu.restfake.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +23,9 @@ public class ProductServiceImpl  extends BaseServiceImpl<Product, Long> implemen
     }
 
     @Override
-    public List<Product> buscarPorTituloQueryMethod(String title) throws Exception {
+    public Page<Product> buscarPorTituloQueryMethodPaged(String title, Pageable pageable) throws Exception {
         try {
-            return productoRepository.findByTitleContaining(title);
+            return productoRepository.findByTitleContaining(title, pageable);
         }
         catch (Exception e) {
             throw new Exception(e.getMessage());
