@@ -29,4 +29,14 @@ public interface ProductoRepository extends BaseRepository<Product, Long>{
         nativeQuery = true
     )
     List<Product> buscarPorTituloNative(@Param("filtro") String title);
+
+    //Consultas avanzadas
+    @Query(
+            value =
+                "SELECT * " +
+                "FROM product p " +
+                "QUALIFY COUNT(*) OVER (PARTITION BY p.categoria) > :cant",
+            nativeQuery = true
+    )
+    List<Product> buscarPorCantidadElementosCategoria(@Param("cant") Integer cantidad);
 }

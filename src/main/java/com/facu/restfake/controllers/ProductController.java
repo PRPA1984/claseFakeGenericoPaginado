@@ -41,4 +41,14 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
+    @GetMapping("/buscarPorCantidadElementosCategoria")
+    public ResponseEntity<?> buscarPorCantidadElementosCategoria(@RequestParam Integer cantidad){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.buscarPorCantidadElementosCategoria(cantidad));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+        }
+    }
+
 }

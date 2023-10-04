@@ -49,4 +49,14 @@ public class ProductServiceImpl  extends BaseServiceImpl<Product, Long> implemen
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<Product> buscarPorCantidadElementosCategoria(Integer cantidad) throws Exception {
+        try {
+            return productoRepository.buscarPorCantidadElementosCategoria(cantidad);
+        }
+        catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }
