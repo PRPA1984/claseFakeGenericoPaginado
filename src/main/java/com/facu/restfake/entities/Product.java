@@ -26,7 +26,6 @@ public class Product  extends Base {
         @Column(name = "precio_compra", precision = 10, scale = 2)
         private BigDecimal price;
 
-
         @Column(name = "description")
         private String description;
 
